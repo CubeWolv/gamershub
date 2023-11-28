@@ -71,14 +71,13 @@ header {
 }
 
 }
-
 @media(max-width:535px){
   .a-gamers-studio {
   font-size: 50px;
+  margin-left:-13px;
 }
 
 }
-
 
 
 
