@@ -90,7 +90,9 @@
     </div>
     <div class="product-showcase">
       <div id="product-slider">
-        {% for post in posts|slice:":20" %}<a href="{% url 'viewproduct' post.title %}">
+
+        {% for post in posts|slice:":20" %}
+        <a href="{% url 'viewproduct' post.title %}">
         <div class="product-slide">
           <img src="{{post.postimage.url}}" alt="{{ post.title }} Image" style="max-width: 300px; max-height: 300px;">
           <p class="the-product-title">{{ post.title }}</p>
@@ -99,8 +101,8 @@
           {% if user.is_authenticated and user.username == 'imranlifik' %}
           <a href="{% url 'editproduct' post.id %}"> <span class="material-symbols-outlined">
             edit_square
-            </span></a>
-          {% endif %}
+            </span>
+          {% endif %}</a>
         </div></a>
 
         <style>

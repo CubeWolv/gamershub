@@ -233,7 +233,7 @@ nav ul.active {
     transform: translate(-80%, -0%);
     }
     #logo{
-        margin-left:15px;
+        margin-left:0px;
     }
 }
 
