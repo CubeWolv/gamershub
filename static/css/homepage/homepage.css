@@ -18,6 +18,10 @@ body{
   z-index: 0;
 }
 
+@media(max-width:500px){
+  #overlay{
+  height: 113%;
+}}
 
 #video-background {
   width: 100%;
@@ -49,7 +53,8 @@ body{
   color: orangered;
   font-size: 60px;
   font-family: 'anurati';
-  margin-bottom:30px
+  margin-bottom:30px;
+  letter-spacing: 2px;
 }
 
 header {
@@ -60,8 +65,9 @@ header {
 @media(max-width:760px){
   .the-first-text-on-homepage {
   top: 20%;
-  width:80%;
+  width:83%;
   text-align: center;
+  margin-left:-1px ;
 }
 
 }
@@ -202,4 +208,3 @@ font-weight: bold;
     height: 30vh;
   }
   }
-
