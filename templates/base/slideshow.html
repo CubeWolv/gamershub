@@ -1,0 +1,164 @@
+{% load static %}
+<style>
+    
+.container2 {
+    color: white;
+}
+
+.left-and-right-buttons i {
+    cursor: pointer;
+    margin: 10px;
+    background-color: rgb(43, 42, 42);
+    border-radius: 4px;
+    font-size: 35px;
+    position: relative;
+    left: 90%;
+    padding-bottom:0px;
+}
+
+.left-and-right-buttons i span {
+    font-size: 33px;
+}
+
+.product-showcase {
+    overflow: hidden;
+    width: 90%;
+    margin: 60px;
+    margin-top: 20px;
+}
+
+#product-slider {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.product-slide {
+    flex: 0 0 auto;
+    margin-right: 20px;
+    width: 320px;
+}
+
+.product-slide img {
+    width: 100%;
+    height: 60%;
+}
+
+.the-product-title {
+    font-weight: bold;
+}
+
+.the-product-amount {
+    font-weight: bold;
+}
+
+/* Media Query for screens 830px and below */
+@media (max-width: 830px) {
+    .left-and-right-buttons i {
+        display: none;
+        /* Hide the arrow buttons */
+    }
+
+    .product-showcase {
+        overflow-x: scroll;
+        /* Allow horizontal scrolling for products */
+        margin: 33px;
+        /* Adjust margin for smaller screens */
+    }
+
+    #product-slider {
+        flex-wrap: nowrap;
+        /* Prevent products from wrapping */
+    }
+
+    .product-slide {
+        width: 100%;
+        /* Take full width of the viewport */
+        flex: 0 0 auto;
+        /* Reset flex property */
+    }
+}
+</style>
+
+<div class="container2">
+    <div class="left-and-right-buttons">
+      <i class="prev"><span class="material-symbols-outlined">
+          chevron_left
+        </span></i>
+      <i class="next"><span class="material-symbols-outlined">
+          chevron_right
+        </span></i>
+    </div>
+    <div class="product-showcase">
+      <div id="product-slider">
+        {% for post in posts|slice:":20" %}<a href="{% url 'viewproduct' post.title %}">
+        <div class="product-slide">
+          <img src="{{post.postimage.url}}" alt="{{ post.title }} Image" style="max-width: 300px; max-height: 300px;">
+          <p class="the-product-title">{{ post.title }}</p>
+          <p class="the-product-amount">ugx {{ post.amount }}</p>
+          <!-- Add other fields as needed -->
+          {% if user.is_authenticated and user.username == 'imranlifik' %}
+          <a href="{% url 'editproduct' post.id %}"> <span class="material-symbols-outlined">
+            edit_square
+            </span></a>
+          {% endif %}
+        </div></a>
+
+        <style>
+          a{
+            color:white;
+          }
+          a:hover{
+            text-decoration: none;
+            color:rgba(255, 255, 255, 0.897);
+          }
+        </style>
+        {% endfor %}
+        <!-- Duplicate the slides for looping -->
+        {% for post in posts|slice:":20" %}
+        <div class="product-slide">
+          <img src="{{post.postimage.url}}" alt="{{ post.title }} Image" style="max-width: 300px; max-height: 300px;">
+          <p class="the-product-title">{{ post.title }}</p>
+          <p class="the-product-amount">ugx {{ post.amount }}</p>
+          <!-- Add other fields as needed -->
+          {% if user.is_authenticated and user.username == 'imranlifik' %}
+          <a href="{% url 'editproduct' post.id %}"> <span class="material-symbols-outlined">
+            edit_square
+            </span></a>
+          {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  
+
+    <script>
+  let currentIndex = 0;
+  const productSlider = document.getElementById("product-slider");
+  const slides = document.querySelectorAll(".product-slide");
+  const totalSlides = slides.length / 5; // Divide by 2 to account for duplicated slides
+
+  document.querySelector(".next").addEventListener("click", () => {
+    if (currentIndex < totalSlides - 1) {
+      currentIndex++;
+    } else {
+      currentIndex = 0;
+    }
+    updateSlider();
+  });
+
+  document.querySelector(".prev").addEventListener("click", () => {
+    if (currentIndex > 0) {
+      currentIndex--;
+    } else {
+      currentIndex = totalSlides - 1;
+    }
+    updateSlider();
+  });
+
+  function updateSlider() {
+    const translateValue = -currentIndex * 100 + "%";
+    productSlider.style.transform = "translateX(" + translateValue + ")";
+  }
+</script>
+

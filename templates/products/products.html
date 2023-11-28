@@ -1,0 +1,264 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+
+{% block header %}
+<title>Gamers Hub</title>
+<meta name="description" content="blog">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta charset="UTF">
+<meta name="author" content="Imran Abdu">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=yes">
+<link rel="icon" href="{% static 'images/logo.png' %}">
+<link rel="stylesheet" href="{% static 'css/products/products.css' %}">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,200,0,0" />
+
+
+  <style>
+    body {
+        background-color: rgba(0, 0, 0, 0.93);
+        font-family: 'Open Sans', sans-serif;
+    }
+    @font-face {
+      font-family: 'Anurati';
+      src: url('{% static "fonts/Anurati-Regular.otf" %}') format('opentype');
+    }
+
+    </style>
+{% endblock header %}
+
+{% block content %}
+
+
+
+<div class="container1">
+  <div class="container-for-navbar">
+    <span class="material-symbols-outlined search-bar">
+      search
+    </span>
+    <form class="the-form-for-the-searchbar"  action="{% url 'products' %}">
+      <input type="search"  name="q" placeholder="{{query}}" >
+    </form>
+  </div>
+</div>
+
+
+
+{% if query %}
+{% if posts %}
+<!-- Display Posts -->
+
+<div class="query_search_container">
+  {% for post in posts|slice:":15" %}
+  <a href="{% url 'viewproduct' post.title %}"><div class="box_docker">
+    <div class="query_game_box">
+      <img class="query_game_image" src="{{post.postimage.url}}" alt="{{ post.title }} Image">
+      <p style="color:white" class="the-product-title">{{ post.title }}</p>
+      <p style="color: white;" class="the-product-amount">ugx {{ post.amount }}</p>
+      <!-- Add other fields as needed -->
+      {% if user.is_authenticated and user.username == 'imranlifik' %}
+      <a href="{% url 'editproduct' post.id %}"> <span class="material-symbols-outlined">
+        edit_square
+        </span></a>
+      {% endif %}
+    </div>
+  </div></a>
+  {% endfor %}
+</div>
+
+ <!-- Display Pagination Links -->
+ <div class="pagination">
+  <span class="step-links">
+    {% if posts.has_previous %}
+      <a href="?page=1">&laquo; first</a>
+      <a href="?page={{ posts.previous_page_number }}">previous</a>
+    {% endif %}
+
+    <span class="current">
+      Page {{ posts.number }} of {{ posts.paginator.num_pages }}.
+    </span>
+
+    {% if posts.has_next %}
+      <a href="?page={{ posts.next_page_number }}">next</a>
+      <a href="?page={{ posts.paginator.num_pages }}">last &raquo;</a>
+    {% endif %}
+  </span>
+</div>
+
+
+
+
+
+
+{% else %}
+<center>
+  <p style="color:orangered; font-size: 30px;">NOT FOUND</p>
+<script src="https://cdn.lordicon.com/lordicon.js"></script>
+<lord-icon
+    src="https://cdn.lordicon.com/iawrhwdo.json"
+    trigger="loop"
+    colors="primary:#545454,secondary:orangered"
+    style="width:250px;height:250px">
+</lord-icon>
+</center>
+
+{% endif %}
+
+{% endif %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% if not query %}
+
+{% include 'base/slideshow.html' %}
+
+
+<div class="container3">
+  <div>
+    <h1 class="the-headings-on-the-products"><span>T</span>op <span>S</span>ellers <span
+        class="material-symbols-outlined">
+        trending_up
+      </span></h1>
+  </div>
+
+  <div class="game-product-container">
+    {% for post in top_sellers_posts|slice:":8" %}
+     <div class="save">
+      <div class="game-box"> <a href="{% url 'viewproduct' post.title %}">
+        <img src="{{post.postimage.url}}" alt="{{ post.title }} Image">
+        <p style="color:white" class="the-product-title">{{ post.title }}</p>
+        <p style="color: white;" class="the-product-amount">ugx {{ post.amount }}</p>
+        <!-- Add other fields as needed -->
+        {% if user.is_authenticated and user.username == 'imranlifik' %}
+        <a href="{% url 'editproduct' post.id %}"> <span class="material-symbols-outlined">
+          edit_square
+          </span></a></a>
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+
+  <div class="the-more-button">
+    <a href="{% url 'products' %}?q=top_sellers" class="more-class">MORE</a>
+  </div>
+</div>
+
+
+
+<!--NEW RELESES-->
+
+<div class="container3">
+  <div>
+    <h1 class="the-headings-on-the-products"><span>N</span>ew <span>R</span>eleases <span
+        class="material-symbols-outlined">
+        schedule
+      </span>
+      <h1>
+  </div>
+
+  <div class="game-product-container">
+    {% for post in new_posts|slice:":8" %}
+    <div class="save">
+      <div class="game-box"><a href="{% url 'viewproduct' post.title %}">
+        <img src="{{post.postimage.url}}" alt="{{ post.title }} Image">
+        <p style="color:white" class="the-product-title">{{ post.title }}</p>
+        <p style="color: white;" class="the-product-amount">ugx {{ post.amount }}</p>
+
+        {% if user.is_authenticated and user.username == 'imranlifik' %}
+        <a href="{% url 'editproduct' post.id %}"> <span class="material-symbols-outlined">
+          edit_square
+          </span></a></a>
+        {% endif %}
+      
+        <!-- Add other fields as needed -->
+      </div>
+    </div>
+    {% endfor %}
+
+
+  </div>
+  <div class="the-more-button">
+    <a href="{% url 'products' %}?q=new_releases" class="more-class">MORE</a>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<!--NEW RELESES-->
+
+<div class="container3">
+  <div>
+    <h1 class="the-headings-on-the-products"><span>O</span>ther <span>G</span>ames <span class="material-symbols-outlined">
+      stadia_controller
+      </span>
+      <h1>
+  </div>
+
+  <div class="game-product-container">
+    {% for post in old_posts|slice:":8" %}
+    <div class="save">
+      <div class="game-box"><a href="{% url 'viewproduct' post.title %}">
+        <img src="{{post.postimage.url}}" alt="{{ post.title }} Image">
+        <p style="color:white" class="the-product-title">{{ post.title }}</p>
+        <p style="color: white;" class="the-product-amount">ugx {{ post.amount }}</p>
+
+        {% if user.is_authenticated and user.username == 'imranlifik' %}
+        <a href="{% url 'editproduct' post.id %}"> <span class="material-symbols-outlined">
+          edit_square
+          </span></a></a>
+        {% endif %}
+      
+        <!-- Add other fields as needed -->
+      </div>
+    </div>
+    {% endfor %}
+
+
+  </div>
+  <div class="the-more-button">
+    <a href="{% url 'products' %}?q=old_releases" class="more-class">MORE</a>
+  </div>
+</div>
+
+
+{% endif %}
+
+
+
+
+
+
+
+
+
+
+{% include 'base/footer.html' %}
+
+{% endblock content %}

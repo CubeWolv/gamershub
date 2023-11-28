@@ -1,0 +1,96 @@
+
+    body{
+        background-color:rgba(0, 0, 0, 0.93);
+        font-family: 'Open Sans', sans-serif;
+    }
+
+   
+    @font-face {
+        font-family: 'Anurati'; 
+        src: url('{% static "fonts/Anurati-Regular.otf" %}') format('opentype'); 
+    }
+    
+    .the-image-on-the-form{
+        width:70px;
+        position: relative;
+        left:50%;
+        transform: translateX(-50%);
+        margin-bottom:50px;
+        margin-top:40px
+    }
+    .the-join-title{
+        text-align: center;
+    }
+    .container-for-form{
+        display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 89vh;
+            margin: 0;
+            color: white;
+            margin-top:50px;
+            margin-bottom:30px;
+    }
+    form {
+        background-color:#202020;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: transparent;
+            color:white;
+            margin-top:10px;
+            outline: none;
+        }
+
+        input:focus {
+        border: 1px solid orangered; 
+        transition: 0.3s ease-out;
+    }
+
+        input[type="submit"] {
+            background-color: orangered;
+            color: #fff;
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+
+        input[type="submit"]:hover {
+            background-color: orangered
+        
+        }
+
+        .agreeing-to-the-policy{
+            text-align: center;
+            font-size: 14px;
+            margin-bottom:25px;
+            margin-top:30px;
+        }
+
+
+        .the-other-join-link{
+            border-bottom: 1px solid orangered;
+            color:white;
+            text-decoration: none;
+        }
+        .the-other-join-link:focus{
+            text-decoration: none;
+        }
+        .the-other-join-link:hover{
+            color: whitesmoke;
+            text-decoration: none;
+        }

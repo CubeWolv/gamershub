@@ -1,0 +1,62 @@
+<style>
+    .title-for-footer{
+        font-family: 'Anurati',sans-serif;
+        font-size: 40px;
+        margin-top: 20px;
+    }
+
+    .footer {
+      background-color: #333;
+      color: white;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .footer a {
+      color: white;
+      text-decoration: none;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .social-icons {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      width: 100%; /* Ensures the icons are spaced out across the entire width */
+    }
+
+    .social-icons a {
+      color: white;
+      text-decoration: none;
+      font-size: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .footer {
+        align-items: center;
+        text-align: center;
+      }
+
+      .social-icons {
+        justify-content: flex-start;
+        flex-wrap: wrap; /* Allows icons to wrap to the next line on smaller screens */
+      }
+
+      .social-icons a {
+        margin: 0 10px 10px 0;
+      }
+    }
+  </style>
+<div class="footer">
+    <p class="title-for-footer"><span style="color: orangered;">G</span>amersHub</p></a>
+  
+    <a href="{% url 'products' %}">Games</a>
+    <a href="/products?q=gadget">Gadgets</a>
+    <a id="contact" href="#">Contact (+256 700 906767)</a>
+    <a href="/products?q=events">Events</a>
+    <a href="#">Terms of use</a>
+
+  </div>

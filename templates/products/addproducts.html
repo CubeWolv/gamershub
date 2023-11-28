@@ -1,0 +1,115 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ADD POST ****</title>
+    <meta name="description" content="Affiliate marketing">
+    <meta charset="UTF">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="author" content="Imran Abdu">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=yes">
+    <meta http-equiv="refresh" content="216000">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.1/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.1/dist/js/select2.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body> 
+        <div class="container-for-form">
+           
+      <form method="post"  enctype="multipart/form-data">
+        <center><a href="{% url 'products' %}" class="go-back" style="color:orangered; text-align: center;border-bottom: 1px solid orangered; cursor: pointer;padding-bottom: 4px;">GO BACK TO STORE ⭕</a></center>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <p style="color: red;text-align: center;">Make sure the size of image is 259*144 | 631 *361</p>
+        <button type="submit" class="thesubmitbutton">SMASH</button>
+  
+  </form>
+</div>
+<style>
+    body{
+        background-color: rgb(18, 18, 18);
+        color:white;
+    }
+
+    .the-join-title{
+        text-align: center;
+    }
+    .container-for-form{
+        display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 89vh;
+            margin: 0;
+            color: white;
+            margin-top:150px;
+            margin-bottom:30px;
+    }
+    form {
+        background-color:#202020;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: transparent;
+            color:white;
+            margin-top:10px;
+            outline: none;
+        }
+ 
+        select{
+            color:orangered;
+        }
+        option{
+            background-color: transparent;
+        }
+        input:focus,
+        select:focus {
+        border: 1px solid orangered; 
+        transition: 0.3s ease-out;
+    }
+
+        input[type="submit"] {
+            background-color: orangered;
+            color: #fff;
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+
+        input[type="submit"]:hover {
+            background-color: orangered
+        
+        }
+.go-back:hover{
+text-decoration: none;
+}
+
+button{
+    width:100%;
+    border:none;
+    background-color:orangered;
+    padding:10px;
+    font-weight: bold;
+    border-radius: 5px;
+    color:white;
+}
+</style>
+  
+  </body>
+</html>
