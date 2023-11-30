@@ -36,7 +36,7 @@
       <header style="position: absolute;">
         <nav class="the-menu">
             <a href="{% url 'home' %}" id="logo">
-                <p><span style="color: orangered;">G</span>amersHub</p></a>
+                <p><span style="color: orangered;">G</span>amersStudio</p></a>
     
     
                 <div class="search1">
@@ -102,7 +102,7 @@
                     <a class="the-links"  href="/products?q=gadget">Gadgets</a>
                 </li>
                 <li>
-                    <a class="the-links"  href="#contact">Contact</a>
+                    <a class="the-links"  href="{% url 'contact' %}">Contact</a>
                 </li>
                 <li style="margin-right: 30px;" class="the-button-for-login-g-bu-one">
                     <a href="{% url 'login' %}" style="border-radius: 50%;" class="get-one-button">
@@ -158,7 +158,6 @@
     </div>
 
 
-
 <style>
 .the-first-text-on-homepage a{
   color:white;
@@ -173,6 +172,8 @@
   text-decoration: none;
   color:white;
 }
+
+
 </style>
 
 

@@ -3,11 +3,11 @@
 
 
 {% block header %}
-<title>Gamers Hub</title>
+<title>{{ post.title }}</title>
 <meta name="description" content="blog">
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta charset="UTF">
-<meta name="author" content="Imran Abdu">
+<meta name="author" content="View products">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=yes">
 <link rel="icon" href="{% static 'images/logo.png' %}">
 <link rel="stylesheet" href="{% static 'css/products/products.css' %}">
@@ -31,10 +31,347 @@
 {% endblock header %}
 
 {% block content %}
+{% if user.is_authenticated and user.username == 'imranlifik' %}
+        <a href="{% url 'editproduct' post.id %}"> <span class="material-symbols-outlined">
+          edit_square
+          </span></a></a>
+        {% endif %}
 
 
 
-<h1>Soon</h1>
+
+<div class="container1">
+<h3 style="margin-left:5%">{{ post.title }}</h3>
+
+<div class="the-cont-on-left">
+  <div class="the-first-container">
+  <img src="{{post.postimage.url}}">
+  <h3>ugx {{ post.amount }}</h3>
+
+  <a href="https://wa.me/message/BFCVZ3FW5WJRE1?text=I'm interested in buying {{ post.title }}  at {{  post.amount }}" target="_blank">
+    <button class="the-buy-button">Buy Now </button>
+</a>
+
+  <p>Shipped allover Uganda</p>
+  </div>
+  <div class="the-second-container">
+<p class="game-details">Game Details</p>
+
+<div class="the-game-details-cont">
+<p>Genre    <span>{{ post.genre }}</span></p>
+<p>Release Date<span>{{ post.releasedate }}</span></p>
+<p>Publisher <span>{{ post.publisher }}</span></p>
+<p>Developer <span>{{ post.developer }}</span></p>
+</div>
+  </div>
+</div>
+
+<style>
+  .the-second-container{
+    background-color: #101419;
+    padding:20px;
+    margin-top:15px;
+  }
+
+  .game-details{
+ border-right:2px solid orangered;
+ margin-top:30px;
+ border-bottom: 1px solid grey;
+ padding-bottom:5px;
+ font-weight: bold;
+  }
+
+  .the-game-details-cont p{
+    margin-top:10px;
+  }
+
+  .the-game-details-cont span{
+    position: absolute;
+    right:3%;
+  }
+</style>
+
+<div class="the-vid-and-images-container">
+  <div class="the-small-pictures">
+    <div id="mainDiv">
+      <!-- Initially, this is where your content will be displayed -->
+      {{ post.youtubeurl |safe }}
+    </div>
+  </div>
+  <div class="showcase-small-images">
+    <div class="smallimages" onclick="changeMainContent('video', '{{ post.youtubeurl }}')">
+      <div class="the-vidoe-show">
+        <span class="material-symbols-outlined">play_circle</span>
+      </div>
+    </div>
+    <div class="smallimages" onclick="changeMainContent('image', '{{ post.showcaseimage1.url }}')">
+      <img src='{{ post.showcaseimage1.url }}' alt='Image 1'>
+    </div>
+    <div class="smallimages" onclick="changeMainContent('image', '{{ post.showcaseimage2.url }}')">
+      <img src='{{ post.showcaseimage2.url }}' alt='Image 2'>
+    </div>
+    <div class="smallimages" onclick="changeMainContent('image', '{{ post.showcaseimage3.url }}')">
+      <img src='{{ post.showcaseimage3.url }}' alt='Image 3'>
+    </div>
+    <div class="smallimages" onclick="changeMainContent('image', '{{ post.showcaseimage4.url }}')">
+      <img src='{{ post.showcaseimage4.url }}' alt='Image 4'>
+    </div>
+  </div>
+  
+
+  <div class="aboutgamecontainer">
+<div class="the-show-containers-a-r">
+    <p  class="game-details">About game</p>
+
+    <p>{{ post.aboutgame |safe }}</p>
+  </div>
+  </div>
+  <div class="the-show-containers-a-r">
+    <p class="game-details">System requirements</p>
+    {{post.platform}}
+  </div>
+</div>
+</div>
+
+
+<div class="games-you-might-like">
+  <div class="line-across">
+  <p class="game-details games-u-my-like">Games you might like </p></div>
+  {% include 'base/slideshow.html' %}
+</div>
+
+
+
+<script>
+  function changeMainContent(type, content) {
+    var mainDiv = document.getElementById('mainDiv');
+
+    if (type === 'video') {
+      mainDiv.innerHTML = content;
+    } else if (type === 'image') {
+      mainDiv.innerHTML = `<img src="${content}" alt="Main Image">`;
+    }
+  }
+</script>
+
+
+<style>
+  .games-you-might-like{
+    clear: both;
+    padding-top:150px;
+  }
+  .games-u-my-like{
+    width:40%;
+    border-bottom:none;
+    margin-left:40px;
+  }
+  .line-across{
+    border-bottom: 2px solid grey;
+    padding-bottom: 15px;
+    width:100%;
+  }
+  .the-small-pictures{
+    position: relative; 
+    margin:30px;
+    width:100%;
+  }
+  .showcase-small-images{
+    
+    display: flex;
+    margin-top: 20px;
+    margin-bottom:40px;
+  }
+
+  .smallimages{
+    width:100px;
+    margin:auto;
+    margin-left:0px;
+    cursor: pointer;
+  }
+  .smallimages img{
+    width:16.5vh;
+    height: auto;
+  }
+
+  .smallimages vi{
+    width:100%;
+    height: 10%;
+  }
+
+  .the-vidoe-show{
+    background-image: url('{{post.postimage.url}}');
+    width:19vh;
+    background-repeat: no-repeat;
+    background-size: contain;
+    text-align: center;
+    height: 11.1vh; 
+    cursor: pointer;
+  }
+
+  .the-vidoe-show span{
+    text-align: center;
+    position: relative;
+    top:50%;
+    transform: translateY(-50%);
+    font-size: 50px;
+   
+  }
+
+  .the-show-containers-a-r{
+    margin-top:40px;
+    background-color: #101419;
+    padding:30px;
+  }
+</style>
+
+
+<style>
+  body{
+    color:white;
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  .the-cont-on-left{
+    float:right;
+    width:26%;
+    margin:15px;
+  }
+
+  .the-first-container{
+    background-color: #101419;
+    padding:20px;
+  }
+
+  .the-cont-on-left img{
+    width:100%;
+    height: 32vh;
+  }
+  .the-cont-on-left h3{
+    font-weight: 600;
+    margin-top:20px;
+    margin-bottom:20px;
+  }
+
+  .the-cont-on-left p{
+    margin-top:15px;
+  }
+
+  .the-cont-on-left a {
+    border:1px solid white;
+    background-color: transparent;
+    padding:10px 25px;
+    margin-top:20px;
+  }
+
+  .the-buy-button{
+    width:83%;
+    background-color: transparent;
+    border:none;
+    color:white;
+    font-weight: bold;
+  }
+  .the-cont-on-left a:hover{
+    text-decoration: none;
+    color:white;
+    background-color: orangered;
+    transition: 0.5s ease-in-out;
+  }
+
+  .the-cont-on-left .the-buy-button:active{
+    border:none
+  }
+
+  .the-vid-and-images-container {
+    width:57%;
+    float:left;
+    margin-left:30px;
+  }
+
+  iframe{
+    width:90%;
+  }
+
+  @media(max-width:850px){
+    .the-vid-and-images-container {
+    width:90%;
+    float:none;
+  }
+
+  .the-cont-on-left{
+    float:none;
+    width:90%;
+    margin:5%;
+  }
+
+  
+  .the-cont-on-left img{
+    height: auto;
+  }
+
+  .the-game-details-cont span{
+    position: absolute;
+    right:10%;
+  }
+  }
+
+  @media(max-width:628px){
+    .the-vid-and-images-container {
+    margin-left:10px;
+    width:86%
+  }
+  .the-vid-and-images-container img{
+    width:100%;
+  }
+  iframe{
+    width:100%;
+  }
+
+  }
+
+  @media(max-width:550px){
+    .the-small-pictures{
+    position: relative; 
+    margin:10px;
+    width:100%;
+  }
+
+  .smallimages{
+    width:100px;
+    margin:auto;
+    margin-left:10px;
+    cursor: pointer;
+  }
+  .smallimages img{
+    width:100%;
+    height: auto;
+  }
+
+  #mainDiv{
+    width:100%;
+  }
+  .the-vidoe-show{
+    width:13vh;
+    height: 4vh; 
+    margin-right:-35px
+  }
+
+  .the-vidoe-show span{
+    position: relative;
+    left:-20%;
+    font-size: 20px;
+   
+  }
+
+  .games-u-my-like{
+    width:70%;
+  }
+  .the-show-containers-a-r{
+    padding:15px;
+    width:100%;
+    margin:5px;
+  }
+  }
+</style>
 
 
 

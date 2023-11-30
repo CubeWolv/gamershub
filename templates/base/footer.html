@@ -12,6 +12,7 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
+      clear: both;
     }
 
     .footer a {
@@ -51,11 +52,11 @@
     }
   </style>
 <div class="footer">
-    <p class="title-for-footer"><span style="color: orangered;">G</span>amersHub</p></a>
+    <p class="title-for-footer"><span style="color: orangered;">G</span>amersStudio</p></a>
   
     <a href="{% url 'products' %}">Games</a>
     <a href="/products?q=gadget">Gadgets</a>
-    <a id="contact" href="#">Contact (+256 700 906767)</a>
+    <a href="{% url 'contact' %}">Contact</a>
     <a href="/products?q=events">Events</a>
     <a href="#">Terms of use</a>
 

@@ -1,1 +1,2 @@
 django
+pillow-10.1.0

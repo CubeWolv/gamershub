@@ -1,0 +1,139 @@
+* {
+    margin: 0;
+    padding: 0;
+
+}
+
+.the-container-for-contact-l a{
+  color:white;
+  text-decoration: none;
+  border-left:2px solid orangered;
+  padding:5px;
+  cursor: pointer;
+}
+
+.the-container-for-contact-l .arrow{
+  visibility: hidden;
+    transition: visibility 0.3s;
+}
+
+.the-container-for-contact-l a:hover .arrow {
+    visibility: visible;
+  }
+
+.the-container-for-contact-l img{
+  width:50px;
+  margin-left:20px;
+  margin-top:20px;
+}
+.arrow:hover{
+  display: block;
+}
+a:hover{
+  text-decoration: none;
+  color:white;
+}
+
+.head {
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%,-50%);
+  z-index: 100;
+}
+
+@media(max-width:630px){
+  .head{
+    position: relative;
+    top:20%;
+  }
+}
+
+.head {
+  padding: 12px 10px;
+  margin-bottom: 1px;
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.11);
+  width:40%;
+  padding:20px;
+}
+
+.text{
+    font-family: 'anurati';
+    font-size: 70px;
+    color:orangered;
+    text-align: center;
+}
+
+
+@media(max-width:627px){
+.head{
+top:25%;
+width:95%;
+}
+.text{
+    font-size: 35px;
+}
+}
+
+@keyframes move-twink-back {
+    from {background-position:0 0;}
+    to {background-position:-10000px 5000px;}
+}
+@-webkit-keyframes move-twink-back {
+    from {background-position:0 0;}
+    to {background-position:-10000px 5000px;}
+}
+@-moz-keyframes move-twink-back {
+    from {background-position:0 0;}
+    to {background-position:-10000px 5000px;}
+}
+@-ms-keyframes move-twink-back {
+    from {background-position:0 0;}
+    to {background-position:-10000px 5000px;}
+}
+
+@keyframes move-clouds-back {
+    from {background-position:0 0;}
+    to {background-position:10000px 0;}
+}
+@-webkit-keyframes move-clouds-back {
+    from {background-position:0 0;}
+    to {background-position:10000px 0;}
+}
+@-moz-keyframes move-clouds-back {
+    from {background-position:0 0;}
+    to {background-position:10000px 0;}
+}
+@-ms-keyframes move-clouds-back {
+    from {background-position: 0;}
+    to {background-position:10000px 0;}
+}
+
+.stars, .twinkle {
+  position:relative;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  width:100%;
+  height:100%;
+  display:block;
+  z-index: -10;
+}
+
+.stars {
+  background:#000000 url(http://sylvaingarnot.fr/media/stars.png) repeat top center;
+  z-index:-1;
+}
+
+.twinkle{
+  background:transparent url(http://sylvaingarnot.fr/media/twinkling.png) repeat top center;
+  z-index:-1;
+
+  -moz-animation:move-twink-back 200s linear infinite;
+  -ms-animation:move-twink-back 200s linear infinite;
+  -o-animation:move-twink-back 200s linear infinite;
+  -webkit-animation:move-twink-back 200s linear infinite;
+  animation:move-twink-back 200s linear infinite;
+}

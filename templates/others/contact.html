@@ -1,0 +1,210 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+
+{% block header %}
+<title>Contact us</title>
+<meta name="description" content="blog">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta charset="UTF">
+<meta name="author" content="Imran Abdu">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=yes">
+<link rel="icon" href="{% static 'images/logo.png' %}">
+<link rel="stylesheet" href="{% static 'css/others/contact/contact.css' %}">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,200,0,0" />
+
+  <style>
+    body {
+        background-color: rgba(0, 0, 0, 0.93);
+        font-family: 'Open Sans', sans-serif;
+    }
+    @font-face {
+      font-family: 'Anurati';
+      src: url('{% static "fonts/Anurati-Regular.otf" %}') format('opentype');
+    }
+
+    </style>
+{% endblock header %}
+
+{% block content %}
+
+<script src="https://raw.githubusercontent.com/aptorres27/Random-constellations-particle.js-stars-background/master/particle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+<div>
+    <article id="info">
+     
+    <div id="particles-js"></div>
+    
+    </div>
+     
+    
+      <header>
+         
+     <div class="stars"></div>
+    <div class="twinkle"></div>
+    
+      </header>
+     <div class="head">
+        <div class="content">
+
+            <h2 class="text" data-text="Contact">
+   
+               CONTACT
+            </h2>
+   <div class="the-container-for-contact-l">
+    <a href="mailto:info@gamerskampala.com">Email : info@gamerskampala.com <span class="material-symbols-outlined arrow">
+      arrow_right_alt
+      </span></a>
+<br><br>
+    <a>Number : +256782728213 <span class="material-symbols-outlined arrow">
+      arrow_right_alt
+      </span></a>
+<br><br><br>
+      <a style="border-left: none;" href='https://wa.me/message/BFCVZ3FW5WJRE1'><img src="{% static 'images/sm/whatsapp.png' %}"></a>
+      <a style="border-left:none;" href="https://instagram.com/gamershubkampala?igshid=OGQ5ZDc2ODk2ZA%3D%3D&utm_source=qr"><img src="{% static 'images/sm/instagram.png' %}"></a>
+   </div>
+         </div>
+    </div>
+
+    
+    </article>
+ 
+
+
+
+
+
+
+
+
+
+
+<script>
+    /* ---- particles.js config ---- */
+
+particlesJS("particles-js", {
+  "particles": {
+    "number": {
+      "value": 90,
+      "density": {
+        "enable": true,
+        "value_area": 800
+          
+      }
+      
+   
+    },
+    "shape": {
+      "type": "circle",
+      "stroke": {
+        "width": 2,
+        "color": "#fff"
+      },
+      "polygon": {
+        "nb_sides": 7
+      },
+      "image": {
+        "src": "img/github.svg",
+        "width": 100,
+        "height": 100
+      }
+    },
+    "opacity": {
+      "value": 1,
+      "random": false,
+      "anim": {
+        "enable": false,
+        "speed": 3,
+        "opacity_min": 0.1,
+        "sync": false
+      }
+    },
+    "size": {
+      "value": 3,
+      "random": true,
+      "anim": {
+        "enable": false,
+        "speed": 20,
+        "size_min": 0.1,
+        "sync": false
+      }
+    },
+    "line_linked": {
+      "enable": true,
+      "distance": 250,
+      "color": "fff",
+      "opacity": 0.4,
+      "width": 1
+    },
+    "move": {
+      "enable": true,
+      "speed": 3,
+      "direction": "none",
+      "random": true,
+      "straight": false,
+      "out_mode": "out",
+      "bounce": false,
+      "attract": {
+        "enable": false,
+        "rotateX": 600,
+        "rotateY": 1200
+      }
+      
+    }
+  },
+  "interactivity": {
+    "detect_on": "canvas",
+    "events": {
+      "onhover": {
+        "enable": true,
+        "mode": "grab"
+      },
+      "onclick": {
+        "enable": true,
+        "mode": "push"
+        
+      },
+      "resize": true
+    },
+    "modes": {
+      "grab": {
+        "distance": 140,
+        "line_linked": {
+          "opacity": 1
+        }
+      },
+      "bubble": {
+        "distance": 300,
+        "size": 70,
+        "duration": 2,
+        "opacity": 8,
+        "speed": 3
+      },
+      "repulse": {
+        "distance": 500,
+        "duration": 0.4
+      },
+      "push": {
+        "particles_nb": 4
+      },
+      "remove": {
+        "particles_nb": 2
+      }
+    }
+  },
+  "retina_detect": true
+ 
+});
+</script>
+
+
+
+
+{% include 'base/footer.html' %}
+
+{% endblock content %}

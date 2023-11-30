@@ -28,7 +28,7 @@
     <header>
         <nav class="the-menu">
             <a href="{% url 'home' %}" id="logo">
-                <p><span style="color: orangered;">G</span>amersHub</p>
+                <p><span style="color: orangered;">G</span>amersStudio</p>
             </a>
 
 
@@ -96,7 +96,7 @@
                     <a class="the-links" href="/products?q=gadget">Gadgets</a>
                 </li>
                 <li>
-                    <a class="the-links" href="#contact">Contact</a>
+                    <a class="the-links" href="{% url 'contact' %}">Contact</a>
                 </li>
                 <li style="margin-right: 30px;" class="the-button-for-login-g-bu-one">
                     <a href="{% url 'login' %}" style="border-radius: 50%;" class="get-one-button">

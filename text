@@ -3,7 +3,7 @@
 
 
 {% block header %}
-<title>Games</title>
+<title>Gamers Hub</title>
 <meta name="description" content="blog">
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta charset="UTF">
@@ -41,7 +41,7 @@
       search
     </span>
     <form class="the-form-for-the-searchbar"  action="{% url 'products' %}">
-      <input type="search"  name="q" placeholder="{{query}}" >
+      <input type="search"  name="q" >
     </form>
   </div>
 </div>
@@ -51,10 +51,10 @@
 {% if query %}
 {% if posts %}
 <!-- Display Posts -->
-
+{% for post in posts %}
 <div class="query_search_container">
   {% for post in posts|slice:":15" %}
-  <a href="{% url 'viewproduct' post.title %}"><div class="box_docker">
+  <div class="box_docker">
     <div class="query_game_box">
       <img class="query_game_image" src="{{post.postimage.url}}" alt="{{ post.title }} Image">
       <p style="color:white" class="the-product-title">{{ post.title }}</p>
@@ -66,10 +66,31 @@
         </span></a>
       {% endif %}
     </div>
-  </div></a>
+  </div>
   {% endfor %}
 </div>
 
+
+<style>
+  .query_search_container{
+    display: flex;
+            flex-wrap: wrap;
+            width:90%;
+            
+  }
+
+  .box_docker{
+            
+  }
+  .query_game_box{
+   width: 50vh;
+   flex-wrap: wrap;
+  }
+
+  .query_game_image{
+    width:100%;
+  }
+</style>
  <!-- Display Pagination Links -->
  <div class="pagination">
   <span class="step-links">
@@ -88,7 +109,7 @@
     {% endif %}
   </span>
 </div>
-
+{% endfor %}
 
 
 
@@ -138,9 +159,9 @@
   </div>
 
   <div class="game-product-container">
-    {% for post in top_sellers_posts|slice:":8" %}
-     <div class="save">
-      <div class="game-box"> <a href="{% url 'viewproduct' post.title %}">
+    {% for post in posts|slice:":8" %}
+    <div class="save">
+      <div class="game-box">
         <img src="{{post.postimage.url}}" alt="{{ post.title }} Image">
         <p style="color:white" class="the-product-title">{{ post.title }}</p>
         <p style="color: white;" class="the-product-amount">ugx {{ post.amount }}</p>
@@ -148,7 +169,7 @@
         {% if user.is_authenticated and user.username == 'imranlifik' %}
         <a href="{% url 'editproduct' post.id %}"> <span class="material-symbols-outlined">
           edit_square
-          </span></a></a>
+          </span></a>
         {% endif %}
       </div>
     </div>
@@ -157,7 +178,7 @@
 
 
   <div class="the-more-button">
-    <a href="{% url 'products' %}?q=top_sellers" class="more-class">MORE</a>
+    <a href="#" class="more-class">MORE</a>
   </div>
 </div>
 
@@ -175,9 +196,9 @@
   </div>
 
   <div class="game-product-container">
-    {% for post in new_posts|slice:":8" %}
+    {% for post in posts|slice:":8" %}
     <div class="save">
-      <div class="game-box"><a href="{% url 'viewproduct' post.title %}">
+      <div class="game-box">
         <img src="{{post.postimage.url}}" alt="{{ post.title }} Image">
         <p style="color:white" class="the-product-title">{{ post.title }}</p>
         <p style="color: white;" class="the-product-amount">ugx {{ post.amount }}</p>
@@ -185,7 +206,7 @@
         {% if user.is_authenticated and user.username == 'imranlifik' %}
         <a href="{% url 'editproduct' post.id %}"> <span class="material-symbols-outlined">
           edit_square
-          </span></a></a>
+          </span></a>
         {% endif %}
       
         <!-- Add other fields as needed -->
@@ -196,73 +217,19 @@
 
   </div>
   <div class="the-more-button">
-    <a href="{% url 'products' %}?q=new_releases" class="more-class">MORE</a>
-  </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-<!--NEW RELESES-->
-
-<div class="container3">
-  <div>
-    <h1 class="the-headings-on-the-products"><span>O</span>ther <span>G</span>ames <span class="material-symbols-outlined">
-      stadia_controller
-      </span>
-      <h1>
-  </div>
-
-  <div class="game-product-container">
-    {% for post in old_posts|slice:":8" %}
-    <div class="save">
-      <div class="game-box"><a href="{% url 'viewproduct' post.title %}">
-        <img src="{{post.postimage.url}}" alt="{{ post.title }} Image">
-        <p style="color:white" class="the-product-title">{{ post.title }}</p>
-        <p style="color: white;" class="the-product-amount">ugx {{ post.amount }}</p>
-
-        {% if user.is_authenticated and user.username == 'imranlifik' %}
-        <a href="{% url 'editproduct' post.id %}"> <span class="material-symbols-outlined">
-          edit_square
-          </span></a></a>
-        {% endif %}
-      
-        <!-- Add other fields as needed -->
-      </div>
-    </div>
-    {% endfor %}
-
-
-  </div>
-  <div class="the-more-button">
-    <a href="{% url 'products' %}?q=old_releases" class="more-class">MORE</a>
+    <a href="#" class="more-class">MORE</a>
   </div>
 </div>
 
 
 {% endif %}
-<style>
-    @media screen and (max-width: 530px) {
-  
-  .game-box {
-      width: 40vh;
-      height: 70%;
-      text-wrap: wrap;
-  }
-  .game-box img{
-    height: 100%;
-  }
-    }
-  
-</style>
+
+
+
+
+
+
+
 
 
 
