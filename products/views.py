@@ -74,7 +74,7 @@ login_required
 def editproduct(request, id):
     post = Post.objects.get(id=id)
     if request.method == 'POST':
-        form = AddProduct(request.POST, instance=post)
+        form = AddProduct(request.POST, request.FILES, instance=post)
         if form.is_valid():
             form.save()
             return redirect('products')
@@ -84,6 +84,7 @@ def editproduct(request, id):
 
 
 
-def viewproduct(request,title):
+def viewproduct(request, title):
+    posts = Post.objects.all()
     post = get_object_or_404(Post, title=title)
-    return render(request, './products/viewproduct.html', {'post': post}) 
+    return render(request, './products/viewproduct.html', {'post': post, 'posts': posts})

@@ -20,10 +20,13 @@ def home(request):
 def login(request):
     page = 'login'
 
+    # Check if the user is already logged in
+    if request.user.is_authenticated:
+        return redirect('products')
+
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
-        
 
         user = authenticate(request, username=username, password=password)
 
@@ -34,12 +37,11 @@ def login(request):
         else:
             messages.info(request, 'Invalid username or password')
             return redirect("login")
+
     if 'next' in request.POST:
         return redirect(request.POST['next'])
 
     return render(request, './join/login.html', {'page': page})
-
-
 
 
 def signup(request):
@@ -62,3 +64,7 @@ def signup(request):
         form = SignupForm()
 
     return render(request, 'join/signup.html', {'form': form})
+
+
+def contact(request):
+    return render(request ,'./others/contact.html')

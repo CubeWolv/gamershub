@@ -28,9 +28,24 @@ class Post(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
     product_type = models.CharField(max_length=20, choices=PRODUCT_TYPES)
+    showcaseimage1 = models.ImageField(upload_to='files/' ,default='/logo.png')
+    showcaseimage2 = models.ImageField(upload_to='files/' ,default='/logo.png')
+    showcaseimage3 = models.ImageField(upload_to='files/' ,default='/logo.png')
+    showcaseimage4 = models.ImageField(upload_to='files/' ,default='/logo.png')
+    youtubeurl = models.TextField(default="")
+    aboutgame= models.TextField(default="")
+    genre= models.CharField(max_length=200, blank=True)
+    releasedate=models.CharField(max_length=200, blank=True)
+    publisher =models.CharField(max_length=200, blank=True)
+    developer = models.CharField(max_length=200, blank=True)
+
+    language = models.CharField(max_length=200, blank=True)
+    platform =models.CharField(max_length=200, blank=True)
+
 
     class Meta:
         ordering = ['-created_on']
-
+ 
     def __str__(self):
         return self.title
+
