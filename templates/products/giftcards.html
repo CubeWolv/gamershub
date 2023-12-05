@@ -60,14 +60,15 @@
 
 
 <div class="giftcontainer-2">
-    {% for giftcard in giftcard %}<a href="https://wa.me/message/BFCVZ3FW5WJRE1?text=I'm interested in buying  giftcard {{giftcard.title}}  at {{giftcard.price}}" target="_blank">
+    {% for giftcard in giftcard %}
     <div class="fluid-for-the-giftcards">
+        <a href="https://wa.me/message/BFCVZ3FW5WJRE1?text=I'm interested in buying  giftcard {{giftcard.title}}  at {{giftcard.price}}" target="_blank">
         <img src="{{ giftcard.giftcardimage.url }}">
         <p style="margin-top:20px;font-weight: bold;" class="giftcard-title">{{ giftcard.title }}</p>
         <div class="the-lower-part-o-giftcard">
             <p class="giftcard-price">${{ giftcard.price }}</p>
             <p class="giftcard-type">{{ giftcard.giftcard_type }}</p>
-        </div>
+        </div></a>
         {% if user.is_authenticated and user.username == 'imranlifik' %}
             <a href="{% url 'editgiftcards' giftcard.id %}" style="position: absolute;left: 30%;">
                 <span class="material-symbols-outlined">
