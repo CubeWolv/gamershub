@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ADD POST ****</title>
+    <title>ADD GIFTVARD ****</title>
     <meta name="description" content="Affiliate marketing">
     <meta charset="UTF">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -15,15 +15,24 @@
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
   integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  </head>
+  
+<style>
+    body{
+    background-color: rgb(18, 18, 18);
+    color:white;
+}
+.container-for-form{
+        margin-top:10%;
+}
+</style>
+</head>
   <body> 
         <div class="container-for-form">
-           
       <form method="post"  enctype="multipart/form-data">
-        <center><a href="{% url 'products' %}" class="go-back" style="color:orangered; text-align: center;border-bottom: 1px solid orangered; cursor: pointer;padding-bottom: 4px;">GO BACK TO STORE ⭕</a></center>
+        <center><a href="{% url 'giftcards' %}" class="go-back" style="color:orangered; text-align: center;border-bottom: 1px solid orangered; cursor: pointer;padding-bottom: 4px;">GO BACK TO Giftcard Store ⭕</a></center>
         {% csrf_token %}
         {{ form.as_p }}
-        <p style="color: red;text-align: center;">Make sure the size of image is 259*144 | 631 *361</p>
+        <p style="color: red;text-align: center;">Make sure the size of image is 191 * 265 | 291 * 265</p>
         <button type="submit" class="thesubmitbutton">SMASH</button>
   
   </form>

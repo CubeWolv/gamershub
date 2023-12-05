@@ -1,0 +1,120 @@
+.container-for-giftcard-nav{
+    width:100%;
+     text-align: center;
+     background-color: #18181c;
+     padding:15px;
+}
+
+.giftcard-nav-fluid {
+text-align: center;
+}
+
+.giftcard-nav-fluid li {
+margin: 0 10px;
+display: inline;
+margin-left:10px;
+}
+
+.giftcard-nav-fluid a {
+text-decoration: none;
+color:white;
+}
+
+.giftcard-nav-fluid a:hover{
+color:white;
+text-decoration: none;
+border-bottom:2px solid orangered;
+}
+
+
+.search-for-giftcards-form{
+width:50%;
+margin-top:40px;
+border:1px solid white;
+border-radius: 4px;
+}
+
+.search-for-giftcards-form input{
+background-color: transparent;
+width:100%;
+padding:10px;
+color:white;
+border:none;
+}
+
+.search-for-giftcards-form:focus{
+border:1px solid orangered
+}
+.search-for-giftcards-form input:focus{
+border: none;
+}
+
+.giftcontainer-2 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top:100px;
+    margin-bottom:100px;
+}
+
+.fluid-for-the-giftcards {
+    color: white;
+    position: relative;
+    width: 17%;
+    margin-right: 10px;
+    margin:30px;
+    width: calc(17.33% - -20px);
+    margin-bottom: 60px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.fluid-for-the-giftcards:hover{
+    transform: scale(1.1); 
+} 
+
+.fluid-for-the-giftcards img {
+    width: 100%;
+}
+
+.the-lower-part-o-giftcard {
+    margin-top: 15px;
+}
+
+.the-lower-part-o-giftcard .giftcard-type {
+    position: absolute;
+    right: 0px;
+}
+
+.the-lower-part-o-giftcard .giftcard-price {
+    position: absolute;
+    font-weight: bold;
+    left: 0px;
+}
+@media screen and (max-width: 550px) {
+    .search-for-giftcards-form{
+width:90%;
+}
+    .giftcontainer-2 {
+        justify-content: center; /* Center items on smaller screens */
+    }
+
+    .fluid-for-the-giftcards {
+        width: 35%; /* Full width on smaller screens */
+        margin-right: 0;
+        margin:20px;
+        margin-bottom: 60px;
+    }
+ .giftcard-title{
+    font-size: 14px;
+ }
+}
+
+a{
+color:white;
+text-decoration: none;
+}
+a:hover{
+color:white;
+text-decoration: none;
+}

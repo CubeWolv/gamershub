@@ -3,7 +3,7 @@
 
 
 {% block header %}
-<title>Gamers Hub</title>
+<title>Giftcards</title>
 <meta name="description" content="blog">
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta charset="UTF">
@@ -35,204 +35,141 @@
 
 
 
-<div class="container1">
-  <div class="container-for-navbar">
-    <span class="material-symbols-outlined search-bar">
-      search
-    </span>
-    <form class="the-form-for-the-searchbar"  action="{% url 'products' %}">
-      <input type="search"  name="q" >
-    </form>
-  </div>
+
+<div class="container-for-giftcard-nav">
+    <div class="giftcard-nav-fluid">
+    <li><a href="">PSN</a></li>
+    <li><a href="">Stream</a></li>
+    <li><a href="">Xbox Live</a></li>
+    <li><a href="">Nintendo</a></li>
+    <li><a href="">EA app</a></li>
+    <li><a href="">Microsoft</a></li>
+    <li><a href="">Riot</a></li>
+    <li><a href="">Blizzard</a></li>
+    <li><a href="">Level up</a></li>
+</div>
 </div>
 
 
+<center>
+<form class="search-for-giftcards-form">
+    <input type="search" placeholder="Search Giftcards">
+</form>
+</center>
 
-{% if query %}
-{% if posts %}
-<!-- Display Posts -->
-{% for post in posts %}
-<div class="query_search_container">
-  {% for post in posts|slice:":15" %}
-  <div class="box_docker">
-    <div class="query_game_box">
-      <img class="query_game_image" src="{{post.postimage.url}}" alt="{{ post.title }} Image">
-      <p style="color:white" class="the-product-title">{{ post.title }}</p>
-      <p style="color: white;" class="the-product-amount">ugx {{ post.amount }}</p>
-      <!-- Add other fields as needed -->
-      {% if user.is_authenticated and user.username == 'imranlifik' %}
-      <a href="{% url 'editproduct' post.id %}"> <span class="material-symbols-outlined">
-        edit_square
-        </span></a>
-      {% endif %}
-    </div>
-  </div>
-  {% endfor %}
+
+<style>
+.container-for-giftcard-nav{
+           width:100%;
+            text-align: center;
+            background-color: #18181c;
+            padding:15px;
+}
+
+.giftcard-nav-fluid {
+    text-align: center;
+}
+
+.giftcard-nav-fluid li {
+    margin: 0 10px;
+    display: inline;
+    margin-left:10px;
+}
+
+.giftcard-nav-fluid a {
+    text-decoration: none;
+    color:white;
+}
+
+.giftcard-nav-fluid a:hover{
+    color:white;
+    text-decoration: none;
+    border-bottom:2px solid orangered;
+}
+
+
+.search-for-giftcards-form{
+    width:50%;
+    margin-top:40px;
+    border:1px solid white;
+    border-radius: 4px;
+}
+
+.search-for-giftcards-form input{
+    background-color: transparent;
+    width:100%;
+    padding:10px;
+    color:white;
+    border:none;
+}
+
+.search-for-giftcards-form:focus{
+    border:1px solid orangered
+}
+.search-for-giftcards-form input:focus{
+    border: none;
+}
+
+</style>
+
+
+<div class="giftcontainer-2">
+    <div class="game-giftcard-container">
+        {% for giftcard in giftcard %}
+        <div class="fluid-for-the-giftcards">
+        <img src="{{ giftcard.giftcardimage.url }}">
+        <p>{{ giftcard.title }}</p>
+        <div class="the-lower-part-o-giftcard">
+            <p class="giftcard-price">{{ giftcard.price }}</p>
+            <p class="giftcard-type">{{ giftcard.giftcard_type }}</p>
+        </div>
+            {% if user.is_authenticated and user.username == 'imranlifik' %}
+            <a href=""> <span class="material-symbols-outlined">
+              edit_square
+              </span></a></a>
+            {% endif %}
+          
+            <!-- Add other fields as needed -->
+          </div></div>
+        </div>
+        {% endfor %}
 </div>
 
 
 <style>
-  .query_search_container{
-    display: flex;
-            flex-wrap: wrap;
-            width:90%;
-            
-  }
-
-  .box_docker{
-            
-  }
-  .query_game_box{
-   width: 50vh;
-   flex-wrap: wrap;
-  }
-
-  .query_game_image{
-    width:100%;
-  }
-</style>
- <!-- Display Pagination Links -->
- <div class="pagination">
-  <span class="step-links">
-    {% if posts.has_previous %}
-      <a href="?page=1">&laquo; first</a>
-      <a href="?page={{ posts.previous_page_number }}">previous</a>
-    {% endif %}
-
-    <span class="current">
-      Page {{ posts.number }} of {{ posts.paginator.num_pages }}.
-    </span>
-
-    {% if posts.has_next %}
-      <a href="?page={{ posts.next_page_number }}">next</a>
-      <a href="?page={{ posts.paginator.num_pages }}">last &raquo;</a>
-    {% endif %}
-  </span>
-</div>
-{% endfor %}
-
-
-
-
-
-{% else %}
-<center>
-  <p style="color:orangered; font-size: 30px;">NOT FOUND</p>
-<script src="https://cdn.lordicon.com/lordicon.js"></script>
-<lord-icon
-    src="https://cdn.lordicon.com/iawrhwdo.json"
-    trigger="loop"
-    colors="primary:#545454,secondary:orangered"
-    style="width:250px;height:250px">
-</lord-icon>
-</center>
-
-{% endif %}
-
-{% endif %}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-{% if not query %}
-
-{% include 'base/slideshow.html' %}
-
-
-<div class="container3">
-  <div>
-    <h1 class="the-headings-on-the-products"><span>T</span>op <span>S</span>ellers <span
-        class="material-symbols-outlined">
-        trending_up
-      </span></h1>
-  </div>
-
-  <div class="game-product-container">
-    {% for post in posts|slice:":8" %}
-    <div class="save">
-      <div class="game-box">
-        <img src="{{post.postimage.url}}" alt="{{ post.title }} Image">
-        <p style="color:white" class="the-product-title">{{ post.title }}</p>
-        <p style="color: white;" class="the-product-amount">ugx {{ post.amount }}</p>
-        <!-- Add other fields as needed -->
-        {% if user.is_authenticated and user.username == 'imranlifik' %}
-        <a href="{% url 'editproduct' post.id %}"> <span class="material-symbols-outlined">
-          edit_square
-          </span></a>
-        {% endif %}
-      </div>
-    </div>
-    {% endfor %}
-  </div>
-
-
-  <div class="the-more-button">
-    <a href="#" class="more-class">MORE</a>
-  </div>
-</div>
-
-
-
-<!--NEW RELESES-->
-
-<div class="container3">
-  <div>
-    <h1 class="the-headings-on-the-products"><span>N</span>ew <span>R</span>eleases <span
-        class="material-symbols-outlined">
-        schedule
-      </span>
-      <h1>
-  </div>
-
-  <div class="game-product-container">
-    {% for post in posts|slice:":8" %}
-    <div class="save">
-      <div class="game-box">
-        <img src="{{post.postimage.url}}" alt="{{ post.title }} Image">
-        <p style="color:white" class="the-product-title">{{ post.title }}</p>
-        <p style="color: white;" class="the-product-amount">ugx {{ post.amount }}</p>
-
-        {% if user.is_authenticated and user.username == 'imranlifik' %}
-        <a href="{% url 'editproduct' post.id %}"> <span class="material-symbols-outlined">
-          edit_square
-          </span></a>
-        {% endif %}
+    .giftcontainer-2{
       
-        <!-- Add other fields as needed -->
-      </div>
-    </div>
-    {% endfor %}
+    }
+.game-giftcard-container{
+    
+}
 
+.fluid-for-the-giftcards{
+color:white;
+position: relative;
+background-color: rebeccapurple;
+width:20%
+}
 
-  </div>
-  <div class="the-more-button">
-    <a href="#" class="more-class">MORE</a>
-  </div>
-</div>
+.fluid-for-the-giftcards img{
+width:100%;
+}
 
+.the-lower-part-o-giftcard{
+    background-color: red;
+    
+}
 
-{% endif %}
+.the-lower-part-o-giftcard .giftcard-type{
+    position: absolute;
+    right: 0px;
+}
 
-
-
-
-
-
-
-
-
-
+.the-lower-part-o-giftcard .giftcard-price{
+    position: absolute;
+    left:0px;
+}
+</style>
 
 
 {% include 'base/footer.html' %}
