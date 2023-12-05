@@ -1,7 +1,6 @@
 from django.shortcuts import render,  HttpResponseRedirect, redirect, get_object_or_404
-
-from .models import Post
-from .forms import AddProduct
+from .models import Post ,GiftCard
+from .forms import AddProduct,AddGiftCard
 from django.db.models import  Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import user_passes_test
@@ -88,3 +87,70 @@ def viewproduct(request, title):
     posts = Post.objects.all()
     post = get_object_or_404(Post, title=title)
     return render(request, './products/viewproduct.html', {'post': post, 'posts': posts})
+
+
+def giftcards(request):
+    giftcards = GiftCard.objects.all()
+    query = request.GET.get('q')
+    psn = giftcards.filter(giftcard_type='psn')
+    stream = giftcards.filter(giftcard_type='stream')
+    xbox =giftcards.filter(giftcard_type ='xbox')
+    nintendo= giftcards.filter(giftcard_type='nintendo')
+    ea = giftcards.filter(giftcard_type='ea')
+    microsoft = giftcards.filter(giftcard_type='microsoft')
+    riot = giftcards.filter(giftcard_type='riot')
+    blizzard = giftcards.filter(giftcard_type='blizzard')
+    levelup = giftcards.filter(giftcard_type='levelup')
+
+    if query:
+        keywords = query.split()
+        condition = Q()
+        for keyword in keywords:
+            condition |= Q(title__icontains=keyword) | Q(region__icontains=keyword) | Q(price__icontains=keyword) | Q(giftcard_type__icontains=keyword)
+
+        giftcards = giftcards.filter(condition)
+
+    context = {
+        'giftcard':giftcards,
+        'query':query,
+        'psn':psn,
+        'stream':stream,
+        'xbox':xbox,
+        'nintendo':nintendo,
+        'ea':ea,
+        'microsoft':microsoft,
+        'riot':riot,
+        'blizzard':blizzard,
+        'levelup':levelup,
+    }
+    return render(request, './products/giftcards.html' ,context)
+
+
+@user_passes_test(user_is_specific_user)
+def addgiftcards(request):
+    if request.method == 'POST':
+        form = AddGiftCard(request.POST, request.FILES)
+
+        if form.is_valid():
+            form.save(commit=True, user=request.user)
+            return redirect('addgiftcards')
+    else:
+        form = AddGiftCard()
+
+    return render(request ,'./products/addgiftcards.html', {'form':form})
+
+
+
+
+login_required 
+@user_passes_test(user_is_specific_user)
+def editgiftcards(request ,id):
+    post = GiftCard.objects.get(id=id)
+    if request.method == 'POST':
+        form = AddGiftCard(request.POST, request.FILES, instance=post)
+        if form.is_valid():
+            form.save()
+            return redirect('giftcards')
+    else:
+        form = AddGiftCard(instance=post)
+    return render(request, './products/addgiftcards.html', {'form':form})
