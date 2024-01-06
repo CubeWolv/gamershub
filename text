@@ -10,7 +10,7 @@
 <meta name="author" content="Imran Abdu">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=yes">
 <link rel="icon" href="{% static 'images/logo.png' %}">
-<link rel="stylesheet" href="{% static 'css/products/products.css' %}">
+<link rel="stylesheet" href="{% static 'css/products/giftcards.css' %}">
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
   integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -38,136 +38,168 @@
 
 <div class="container-for-giftcard-nav">
     <div class="giftcard-nav-fluid">
-    <li><a href="">PSN</a></li>
-    <li><a href="">Stream</a></li>
-    <li><a href="">Xbox Live</a></li>
-    <li><a href="">Nintendo</a></li>
-    <li><a href="">EA app</a></li>
-    <li><a href="">Microsoft</a></li>
-    <li><a href="">Riot</a></li>
-    <li><a href="">Blizzard</a></li>
-    <li><a href="">Level up</a></li>
+    <li><a href="/products/giftcards?q=psn">PSN</a></li>
+    <li><a href="/products/giftcards?q=stream">Stream</a></li>
+    <li><a href="/products/giftcards?q=xbox live">Xbox Live</a></li>
+    <li><a href="/products/giftcards?q=nintendo">Nintendo</a></li>
+    <li><a href="/products/giftcards?q=ea app">EA app</a></li>
+    <li><a href="/products/giftcards?q=microsoft">Microsoft</a></li>
+    <li><a href="/products/giftcards?q=riot">Riot</a></li>
+    <li><a href="/products/giftcards?q=blizzard">Blizzard</a></li>
+    <li><a href="/products/giftcards?q=levelup">Level up</a></li>
 </div>
 </div>
 
 
 <center>
-<form class="search-for-giftcards-form">
-    <input type="search" placeholder="Search Giftcards">
+<form class="search-for-giftcards-form"  action="{% url 'giftcards' %}">
+    <input type="search" placeholder="Search Giftcards"  name="q" >
 </form>
 </center>
 
 
+
+<div class="giftcontainer-2">
+
+    {% for giftcard in giftcard %}
+    <div class="fluid-for-the-giftcards">
+        <a href="https://wa.me/message/BFCVZ3FW5WJRE1?text=I'm interested in buying  giftcard {{giftcard.title}}  at {{giftcard.price}}" target="_blank">
+        <img src="{{ giftcard.giftcardimage.url }}">
+        <p style="margin-top:20px;font-weight: bold;" class="giftcard-title">{{ giftcard.title }}</p>
+        <div class="the-lower-part-o-giftcard">
+            <p class="giftcard-price">${{ giftcard.price }}</p>
+            <p class="giftcard-type">{{ giftcard.giftcard_type }}</p>
+        </div></a>
+        {% if user.is_authenticated and user.username == 'imranlifik' %}
+            <a href="{% url 'editgiftcards' giftcard.id %}" style="position: absolute;left: 30%;">
+                <span class="material-symbols-outlined">
+                    edit_square
+                </span>
+        
+        {% endif %}
+    </div>
+    {% endfor %}</a>
+</div>
+</div>
+
 <style>
-.container-for-giftcard-nav{
-           width:100%;
-            text-align: center;
-            background-color: #18181c;
-            padding:15px;
+ .container-for-giftcard-nav{
+    width:100%;
+     text-align: center;
+     background-color: #18181c;
+     padding:15px;
 }
 
 .giftcard-nav-fluid {
-    text-align: center;
+text-align: center;
 }
 
 .giftcard-nav-fluid li {
-    margin: 0 10px;
-    display: inline;
-    margin-left:10px;
+margin: 0 10px;
+display: inline;
+margin-left:10px;
 }
 
 .giftcard-nav-fluid a {
-    text-decoration: none;
-    color:white;
+text-decoration: none;
+color:white;
 }
 
 .giftcard-nav-fluid a:hover{
-    color:white;
-    text-decoration: none;
-    border-bottom:2px solid orangered;
+color:white;
+text-decoration: none;
+border-bottom:2px solid orangered;
 }
 
 
 .search-for-giftcards-form{
-    width:50%;
-    margin-top:40px;
-    border:1px solid white;
-    border-radius: 4px;
+width:50%;
+margin-top:40px;
+border:1px solid white;
+border-radius: 4px;
 }
 
 .search-for-giftcards-form input{
-    background-color: transparent;
-    width:100%;
-    padding:10px;
-    color:white;
-    border:none;
+background-color: transparent;
+width:100%;
+padding:10px;
+color:white;
+border:none;
 }
 
 .search-for-giftcards-form:focus{
-    border:1px solid orangered
+border:1px solid orangered
 }
 .search-for-giftcards-form input:focus{
-    border: none;
+border: none;
 }
 
-</style>
-
-
-<div class="giftcontainer-2">
-    <div class="game-giftcard-container">
-        {% for giftcard in giftcard %}
-        <div class="fluid-for-the-giftcards">
-        <img src="{{ giftcard.giftcardimage.url }}">
-        <p>{{ giftcard.title }}</p>
-        <div class="the-lower-part-o-giftcard">
-            <p class="giftcard-price">{{ giftcard.price }}</p>
-            <p class="giftcard-type">{{ giftcard.giftcard_type }}</p>
-        </div>
-            {% if user.is_authenticated and user.username == 'imranlifik' %}
-            <a href=""> <span class="material-symbols-outlined">
-              edit_square
-              </span></a></a>
-            {% endif %}
-          
-            <!-- Add other fields as needed -->
-          </div></div>
-        </div>
-        {% endfor %}
-</div>
-
-
-<style>
-    .giftcontainer-2{
-      
-    }
-.game-giftcard-container{
-    
+.giftcontainer-2 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top:100px;
+    margin-bottom:100px;
 }
 
-.fluid-for-the-giftcards{
-color:white;
-position: relative;
-background-color: rebeccapurple;
-width:20%
+.fluid-for-the-giftcards {
+    color: white;
+    position: relative;
+    margin-right: 10px;
+    margin:30px;
+    width: calc(80% - 0px);
+    margin-bottom: 60px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
 }
 
-.fluid-for-the-giftcards img{
-width:100%;
+.fluid-for-the-giftcards:hover{
+    transform: scale(1.1); 
+} 
+
+.fluid-for-the-giftcards img {
+    width: 100%;
 }
 
-.the-lower-part-o-giftcard{
-    background-color: red;
-    
+.the-lower-part-o-giftcard {
+    margin-top: 15px;
 }
 
-.the-lower-part-o-giftcard .giftcard-type{
+.the-lower-part-o-giftcard .giftcard-type {
     position: absolute;
     right: 0px;
 }
 
-.the-lower-part-o-giftcard .giftcard-price{
+.the-lower-part-o-giftcard .giftcard-price {
     position: absolute;
-    left:0px;
+    font-weight: bold;
+    left: 0px;
+}
+@media screen and (max-width: 550px) {
+    .search-for-giftcards-form{
+width:90%;
+}
+    .giftcontainer-2 {
+        justify-content: center;
+    }
+
+    .fluid-for-the-giftcards {
+        margin-right: 0;
+        width: calc(40% - 0px);
+        margin-bottom: 60px;
+    }
+ .giftcard-title{
+    font-size: 14px;
+ }
+}
+
+a{
+color:white;
+text-decoration: none;
+}
+a:hover{
+color:white;
+text-decoration: none;
 }
 </style>
 

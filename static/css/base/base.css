@@ -21,7 +21,19 @@ header {
 
 
 }
-
+header{
+    position: relative;
+    height:100px;
+    position: sticky;
+    top:0px;
+    background-color: #18181c;
+  }
+  @media(max-width:750px){
+    header{
+      height:83px;
+    }
+  }
+  
 
 
 .the-menu {

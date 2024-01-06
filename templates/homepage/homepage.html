@@ -1,25 +1,37 @@
+{% extends 'base/base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html>
 
-<head>
-  <title>Gamers Hub</title>
-  <meta name="description" content="blog">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta charset="UTF">
-  <meta name="author" content="Imran Abdu">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=yes">
-  <link rel="icon" href="{% static 'images/logo.png' %}">
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,200,0,0" />
-    <script src="https://unpkg.com/scrollreveal"></script>
-  <link rel="stylesheet" href="{% static 'css/homepage/homepage.css' %}">
-  <link rel="stylesheet" href="{% static 'css/base/base.css' %}">
-</head>
 
-<body>
+{% block header %}
+<title>Gamers Hub</title>
+<meta name="description" content="blog">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta charset="UTF">
+<meta name="author" content="Imran Abdu">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=yes">
+<link rel="icon" href="{% static 'images/logo.png' %}">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,200,0,0" />
+  <script src="https://unpkg.com/scrollreveal"></script>
+<link rel="stylesheet" href="{% static 'css/homepage/homepage.css' %}">
+<link rel="stylesheet" href="{% static 'css/base/base.css' %}">
+
+  <style>
+    body {
+        background-color: rgba(0, 0, 0, 0.93);
+        font-family: 'Open Sans', sans-serif;
+    }
+    @font-face {
+      font-family: 'Anurati';
+      src: url('{% static "fonts/Anurati-Regular.otf" %}') format('opentype');
+    }
+
+    </style>
+{% endblock header %}
+
+{% block content %}
   <div class="container1">
 
 <style> 
@@ -33,128 +45,7 @@
 
     <div id="video-container">
 
-      <header style="position: absolute;">
-        <nav class="the-menu">
-            <a href="{% url 'home' %}" id="logo">
-                <p><span style="color: orangered;">G</span>amersStudio</p></a>
-    
-    
-                <div class="search1">
-                    <span class="material-symbols-outlined searchicon" id="searchIcon">
-                      search
-                    </span>
-                    <form class="searchform"  action="{% url 'products' %}"  id="searchForm" >
-                      <input type="search"  name="q" >
-                    </form>
-                  </div>
-              
-    
-    
-            <div class="menu-icon" id="ham-menu">&#9776;</div>
-    
-            <ul id="nav-bar"> <div class="the-container-for-close-button"><span class="menu-icon closebtn" id="ham-menu" onclick="toggleMenu()">&times;</span>
-            </div>
-    
-    
-    
-    
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const searchIcon = document.getElementById('searchIcon');
-            const searchForm = document.getElementById('searchForm');
-    
-            // Check if the search form state is stored in local storage
-            const isSearchFormVisible = localStorage.getItem('searchFormVisible') === 'true';
-    
-            // Set the initial display state based on local storage
-            searchForm.style.display = isSearchFormVisible ? 'block' : 'none';
-    
-            searchIcon.addEventListener('click', function () {
-                // Toggle visibility of the search form
-                searchForm.style.display = searchForm.style.display === 'none' ? 'block' : 'none';
-    
-                // Store the state in local storage
-                localStorage.setItem('searchFormVisible', searchForm.style.display === 'none');
-            });
-    
-            document.addEventListener('click', function (event) {
-                // Hide the search form if the click is outside the form and the search icon
-                if (!searchForm.contains(event.target) && event.target !== searchIcon) {
-                    searchForm.style.display = 'none';
-    
-                    // Update the state in local storage
-                    localStorage.setItem('searchFormVisible', false);
-                }
-            });
-        });
-    </script>
-    
-    
-    
-                <li>
-                    <a href="{% url 'home' %}" class="the-link-for-home the-links">Home</a>
-                </li>
-                <li>
-                    <a class="the-links"  href="{% url 'products' %}">Games</a>
-                </li>
-                <li>
-                    <a class="the-links"  href="/products?q=gadget">Gadgets</a>
-                </li>
-                <li>
-                  <a class="the-links" href="{% url 'giftcards' %}">Giftcards</a>
-                </li>
-                <li>
-                    <a class="the-links"  href="{% url 'contact' %}">Contact</a>
-                </li>
-                <li style="margin-right: 30px;" class="the-button-for-login-g-bu-one">
-                    <a href="{% url 'login' %}" style="border-radius: 50%;" class="get-one-button">
-                        <span style="font-size: 40px;" class="material-symbols-outlined">account_circle</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </header>
-    <style>
-      header{
-        background: rgba(253, 253, 253, 0.027);
-      }
-       header::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: inherit;
-      filter: blur(10px); /* Adjust the blur amount as needed */
-      z-index: -1;
-    }
-    </style>
-    
-      <script>
-
-        let hamMenuIcon = document.getElementById("ham-menu");
-        let navBar = document.getElementById("nav-bar");
-        let closeBtn = document.querySelector(".close-btn");
-        let navLinks = navBar.querySelectorAll("li");
-    
-        function toggleMenu() {
-            navBar.classList.toggle("active");
-            hamMenuIcon.classList.toggle("fa-times");
-        }
-    
-        hamMenuIcon.addEventListener("click", toggleMenu);
-        closeBtn.addEventListener("click", toggleMenu);
-    
-        navLinks.forEach((navLink) => {
-            navLink.addEventListener("click", () => {
-                navBar.classList.remove("active");
-                hamMenuIcon.classList.remove("fa-times");
-            });
-        });
-    
-    </script>
+ 
 
 
 
@@ -168,11 +59,107 @@
       </div>
       <div class="container-for-front-page">
       <div class="the-first-text-on-homepage">
-        <p class="a-gamers-studio">A GAMER'S STUDIO</p>
-        <p style="margin-bottom:30px">Step into the ultimate gaming destination! . Discover, buy, sell, rent, and even host thrilling gaming events. Your one-stop hub for everything gaming!</p>
-      <a href="{% url 'products' %}">GET A GAME</a>
+        <p class="a-gamers-studio" id="events">A GAMER'S STUDIO</p>
+        <p style="margin-bottom:30px" id="events">
+          Embark on a gaming adventure with our dynamic studio! Immerse yourself in the thrill of our party-hosted games, explore our enticing selection of gaming experiences for purchase, and discover the perfect gift with our range of game cards. Join us and delve into the extraordinary realm of Virtual Reality         </p>
       </div>
+      <div class="the-second-home-fluid">
+      <div class="the-little-use-boxes">
+        <img src="{% static 'images/confetti.png' %}">
+        <div class="the-use-text">
+        <p  class="bold-use">Gaming events</p>
+        <p> Let us host your next epic gaming event. </p>
+      </div></div>
+      <div class="the-little-use-boxes" >
+        <img src="{% static 'images/vr-glasses.png' %}">
+        <div class="the-use-text">
+          <p  class="bold-use">Virtual Reality</p>
+          <p> Level up your events with us – VR included!
+          </p>
+        </div>
+      </div>
+      <div class="the-little-use-boxes">
+        <img src="{% static 'images/console.png' %}">
+        <div class="the-use-text">
+          <p class="bold-use">Gift cards and Games</p>
+          <p> We have gift cards and games.
+          </p>
+        </div>
+      </div>
+      </div>
+
+      <style>
+.the-second-home-fluid{
+position:absolute;
+right:10px;
+width:30%;
+height: 80%;
+top:20%;
+padding: 5px;
+justify-content: center;
+margin-right:30px;
+}
+.the-little-use-boxes{
+height: 30%;
+width: 95%;
+margin:10px;
+background-color: #18181c;
+padding:10px;
+border-radius: 5px;
+transition: transform 0.3s ease-in-out;
+cursor: pointer;
+}
+
+.the-little-use-boxes:hover{
+  transform: scale(1.1);
+}
+
+.the-little-use-boxes img{
+  position: relative;
+  height: 45px;
+  left:50%;
+  top:10px;
+  transform: translateX(-50%);
+  padding:5px;
+}
+
+.the-use-text{
+  text-align: center;
+  margin-top:10px;
+}
+
+.bold-use{
+  font-weight: bold;
+}
+
+@media(max-width:760px){
+  .the-second-home-fluid{
+    display: flex;
+    left:50%;
+    top:80%;
+    width:90%;
+    transform: translateX(-50%);
+  }
+  .the-little-use-boxes{
+    width:100%;
+    font-size: 14px;
+  }
+}
+
+@media(max-width:535px){
+  .the-second-home-fluid{
+    top:70%;
+    padding:0px;
+    width:100%;
+  }
+  .the-little-use-boxes{
+    margin:4px;
+    height: 35%;
+  }
+}
+      </style>
     </div>
+
     </div>
 
 
@@ -196,7 +183,7 @@
 
 
 <div class="the-slideshow-container">
- <a href="{% url 'products' %}" > <h1 class="the-headings-on-the-products"><span>S</span>ee <span>M</span>ore <span class="material-symbols-outlined">
+ <a href="{% url 'products' %}" > <h1 class="the-headings-on-the-products"><span>E</span>xplore More Games<span class="material-symbols-outlined">
     chevron_right
     </span></h1></a>
 
@@ -206,8 +193,37 @@
   
 
 
+<div class="fluid-for-ps5">
+  <p><span style="color:orangered;font-weight: bold;">We</span> offer the latest games and gadgets to elevate your gaming experience.</p>
 
- 
+  <img src="{% static 'images/ps5p.png' %}">
+  <a href="https://wa.me/message/BFCVZ3FW5WJRE1?text=I'm interested in events"  target="_blank" class="the-contact">Get in touch with us</a>
+
+</div>
+
+ <style>
+.fluid-for-ps5 img{
+width:100%;
+padding:20px;
+margin:0px;
+}
+
+.fluid-for-ps5 p{
+font-size: 18px;
+text-align: center;
+}
+.the-contact{
+  position: relative;
+  left:45%;
+  transform: translateX(-50%);
+  border:2px solid orangered;
+  padding:10px;
+  font-weight: bold;
+  width:20vh;
+
+}
+
+ </style>
 
   <a > <h1 style="margin-top: 100px;margin-bottom:-20px;" class="the-headings-on-the-products"><span>W</span>e -<span>H</span>ost Events <span class="material-symbols-outlined">
     chevron_right
@@ -228,27 +244,267 @@
     <div class="the-second-event-image all-event-boxes" id="events">
       <div  class="now-events-flex flex-2">
       <div class="the-words-on-the-event-b second">
-      <h3>Why You Shouldn't Miss This Gaming Spectacle</h3>
-      <p><span class="the-next-event-headers">Thrilling Tournaments: </span>Engage in epic battles and showcase your gaming prowess in a variety of tournaments across different genres. Whether you're into strategy, first-person shooters, or sports simulations, there's a competition for every gamer.</p>
-      <p><span class="the-next-event-headers">Cutting-Edge Technology: </span>Immerse yourself in the latest gaming technology with state-of-the-art equipment and high-performance setups. From powerful gaming rigs to immersive VR experiences, we've curated an environment that caters to the tech-savvy gamer in you.</p>
-      <p><span class="the-next-event-headers">Unlimited Fun and Prizes: </span>Besides the adrenaline-pumping gaming action, we've got a lineup of fun activities, challenges, and, of course, amazing prizes! Whether you're a casual gamer or a seasoned pro, there's something for everyone.</p>
-      </div>
-      <img src="{% static 'images/events/event (5).jpeg' %}" class="second-event-image">
-    </div></div>
-
-    <div class="the-third-event-image all-event-boxes" id="events">
-      <div class="now-events-flex flex-3">
-      <img src="{% static 'images/events/event (4).jpeg' %}">
-      <div  class="the-words-on-the-event-b third">
-      <h3> Join Us for an Unforgettable Night of Gaming Bliss</h3>
+        <h3> Join Us for an Unforgettable Night of Gaming Bliss</h3>
       
-      <p>Mark your calendars and gather your gaming squad for an evening filled with laughter, competition, and pure gaming bliss</p>
-   <p>Don't miss the chance to be a part of this gaming extravaganza. </p>
-   <br><br>
-   <a href="https://wa.me/message/BFCVZ3FW5WJRE1?text=I'm interested in events"  target="_blank" class="the-button-for-contactus-event">Contact Us</a>
-    </div></div></div>
-
+        <p>Mark your calendars and gather your gaming squad for an evening filled with laughter, competition, and pure gaming bliss</p>
+     <p>Don't miss the chance to be a part of this gaming extravaganza. </p>
+     <br><br>
+     <a href="https://wa.me/message/BFCVZ3FW5WJRE1?text=I'm interested in events"  target="_blank" class="the-button-for-contactus-event">Contact Us</a>
+     
+    </div>
+      <img src="{% static 'images/events/event (4).jpeg' %}">
+    </div></div>
   </div>
+
+
+
+
+
+
+
+
+
+<style>
+  body{
+  background-color: rgba(0, 0, 0, 0.93);
+}
+#video-container {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+header{
+  position: relative;
+  height:100px;
+  position: sticky;
+  top:0px;
+  background-color: #18181c;
+}
+@media(max-width:750px){
+  header{
+    height:83px;
+  }
+}
+
+#overlay {
+  position: relative;
+  /* Change from fixed to absolute */
+  top: -13px;
+  left: 0;
+  width: 100%;
+  height: 102%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 0;
+ 
+}
+
+@media(max-width:500px){
+  #overlay{
+  height: 113%;
+}}
+
+#video-background {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+}
+
+.container1 {
+  color: white;
+}
+
+
+@font-face {
+  font-family: 'Anurati';
+  src: url('{% static "fonts/Anurati-Regular.otf" %}') format('opentype');
+}
+
+.the-first-text-on-homepage {
+  position: absolute;
+  top: 30%;
+  left: 5%;
+  flex:1;
+  width:55%;
+  padding: 30px;
+}
+
+.a-gamers-studio {
+  color: orangered;
+  font-size: 60px;
+  font-family: 'anurati';
+  margin-bottom:30px;
+  letter-spacing: 2px;
+}
+
+header {
+  z-index: 10000;
+}
+
+
+@media(max-width:760px){
+  .the-first-text-on-homepage {
+  top: 20%;
+  width:83%;
+  text-align: center;
+  margin-left:-1px ;
+}
+
+}
+@media(max-width:535px){
+  .the-first-text-on-homepage{
+    top:10%;
+    left:50%;
+    transform: translateX(-50%);
+    width:100%;
+  }
+  .a-gamers-studio {
+  font-size: 40px;
+  margin-left:-11px;
+}
+
+}
+
+
+
+
+
+.the-slideshow-container{
+  margin-top:30px;
+}
+
+.the-headings-on-the-products {
+  font-family: 'anurati', sans-serif;
+  color: white;
+  font-size: 25px;
+  margin: 35px;
+ text-align: center;
+}
+
+.the-headings-on-the-products span {
+  color: orangered;
+}
+
+.the-slideshow-container a:hover{
+text-decoration: none;
+}
+
+.game-product-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0 -10px;
+  margin: 20px;
+  background-color: #18181c;
+  padding:30px;
+}
+@media(max-width:500px){
+.game-product-container{
+padding:0px;
+}
+}
+.game-product-container p{
+font-weight: lighter;
+font-size:14px;
+}
+.save {
+  width: 20%;
+  margin: 16px;
+  box-sizing: border-box;
+}
+
+.game-box {
+  width: 100%;
+}
+
+.game-box img {
+  width: 100%;
+  height: 100%;
+}
+
+.the-product-amount{
+font-weight: bold;
+}
+
+@media screen and (max-width: 768px) {
+  .save {
+      width: 40%;
+      margin: 16px;
+      box-sizing: border-box;
+  }
+
+  .game-box {
+      width: 100%;
+  }
+
+}
+
+.container3{
+  display: flex;
+  padding:100px;
+  }
+  .top-game-boxes{
+  padding:30px;
+  }
+  .top-game-boxes img{
+    width:100%;
+  }
+  @media(max-width:990px){
+  .container3{
+    padding:50px;
+  }
+  }
+  @media(max-width:768px){
+  .container3{
+    padding:20px;
+    display: block;
+  }
+  .top-game-boxes{
+    width:100%;
+  }
+  }
+
+  .container4{
+      display: flex;
+  padding:100px;
+    }
+    .container4 img{
+      width:100%;
+      height:65vh;
+    }
+    @media(max-width:990px){
+  .container4{
+    padding:30px}
+  }
+  @media(max-width:768px){
+  .container4{
+    padding:20px;
+    display: block;
+  }
+  .top-game-boxes{
+    width:100%;
+  }
+  .container4 img{
+      height:50vh;
+    }
+  }
+  @media(max-width:400px){
+  .container4 img{
+    height: 30vh;
+  }
+  }
+
+</style>
+
+
+
+
+
+
+
+
+
 
 
 <style>
@@ -355,11 +611,99 @@ width:100%
   });
 </script>
 
+<div class="vr">
+  <p style="text-align: center; font-size: 20px;margin:10px"><span style="color:orangered;font-weight: bold;">VIRTUAL REALITY</span>.Have a VR experience</p>
+<div class="contact-f">
+  <img src="{% static 'images/vr.png' %}">
+  <button>Get in touch</button>
+</div>
+  <div class="image-overlay">
+  <div class="over-text">
+  <p>Embark on a virtual reality journey with our immersive experiences – available now</p>
+  </div>
+</div>
+</div>
+
+<style>
+  .contact-f button{
+position: absolute;
+top:50%;
+left:50%;
+transform: translate(-50%,-50%);
+background-color: #18181c;
+padding:13px;
+border:1px solid orangered;
+color:white;
+font-weight: bold;
+width:200px;
+border-radius: 20px;
+}
+
+@media(max-width:600px){
+ .contact-f button{
+  top:60%;
+  background-color: transparent;
+  color:orangered;
+ }
+}
+  .over-text{
+    text-align: center;
+    width:100%;
+
+  }
+
+  .over-text p{
+    position: relative;
+    left:50%;
+    transform: translateX(-50%);
+    width:40%;
+  }
+  @media(max-width:800px){
+    .over-text p{
+      font-size: 14px;
+      margin-top:-12px;
+      width:85%;
+    }
+  }
+  .vr img {
+width:100%;
+  }
+
+  .vr {
+  position: relative;
+  overflow: hidden;
+}
+.image-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.747) 0%, rgba(0, 0, 0, 0.384) 100%);
+  color: #fff;
+  padding: 20px;
+  box-sizing: border-box;
+  height: 20%;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.vr:hover .image-overlay,
+.vr:active .image-overlay {
+  opacity: 1;
+}
+
+@media (max-width: 767px) {
+  .vr .image-overlay {
+    opacity: 1;
+  }
+}
+</style>
 
 
 
 
- <a href="{% url 'products' %}?q=top_sellers" > <h1 class="the-headings-on-the-products"><span>T</span>op <span>S</span>ellers <span class="material-symbols-outlined">
+
+ <a href="{% url 'products' %}?q=top_sellers" > <h1 class="the-headings-on-the-products"><span>Our </span>Hot  <span>P</span>icks <span class="material-symbols-outlined">
     chevron_right
     </span></h1></a>
 
@@ -368,7 +712,7 @@ width:100%
 <div class="game-product-container">
 
  
-  {% for post in posts|slice:":8" %}
+  {% for post in posts|slice:":4" %}
   <div class="save">
     <div class="game-box"><a href="{% url 'viewproduct' post.title %}">
       <img src="{{post.postimage.url}}" alt="{{ post.title }} Image">
@@ -395,30 +739,83 @@ width:100%
 
 
 
-<!-- <a href="{% url 'products' %}?q=new_releases" > <h1 style="margin-top: 100px;margin-bottom:-20px;" class="the-headings-on-the-products"><span>N</span>ew <span class="material-symbols-outlined">
-  chevron_right
-  </span></h1></a>
 
+<div class="last-chance">
+<p style="color: orangered;font-size: 23px;margin-top:100px;text-align: center;font-weight: bold;">GIFTCARDS</p>
+<div class="cont">  
+  <img src="{% static 'images/giftcard.png' %}" class="giftcards" id="events">
 
-  <div class="container3">
-    {% for post in posts|slice:":2" %}
-      <div class="top-game-boxes">
-        <img src="{{post.postimage.url}}" alt="{{ post.title }} Image">
-        <p style="color:white" class="the-product-title">{{ post.title }}</p>
-        <p style="color: white;font-weight: bold;" class="the-product-amount">ugx {{ post.amount }}</p>
-        {% if user.is_authenticated and user.username == 'imranlifik' %}
-        <a href="{% url 'editproduct' post.id %}"> <span class="material-symbols-outlined">
-          edit_square
-          </span></a>
-        {% endif %}
-    </div>
-    {% endfor %}
+<img src="{% static 'images/review.png' %}" class="godofwar">
+<div class="giftcards-fluid">
+  <a href="/products/giftcards?q=psn"><div class="giftcard-div">PSN</div></a>
+  <a href="/products/giftcards?q=stream"><div class="giftcard-div">STREAM</div></a>
+  <a href="/products/giftcards?q=xbox live"><div class="giftcard-div">XBOX LIVE</div></a>
+  <a href="/products/giftcards"><div class="giftcard-div"  style="background-color: orangered;border:1px solid rgb(168, 46, 2)">MORE</div>
+</a>
   </div>
-
-  ---->
-
+</div></div>
 
 
+<style>
+  .last-chance{
+    position: relative;
+  }
+  .last-chance img {
+    width:100%;
+  }
+
+  .giftcards{
+  display: none;
+    position: relative;
+  }
+
+  .giftcard-div{
+   padding:10px;
+   text-align: center;
+   font-weight: bold;
+   cursor: pointer;
+   padding-top:25px;
+   margin:5px;
+   border-radius: 4px;
+   border:1px solid grey;
+   padding-bottom:25px;
+  }
+
+  .giftcard-div:hover{
+    border:1px outset orangered
+  }
+
+  .cont{
+    margin-top:40px;
+    margin-bottom:100px;
+  }
+
+  .giftcards-fluid{
+    position: absolute;
+    top:20%;
+    padding:10px;
+    margin-left:20px;
+    width:40%;
+
+  }
+
+  .giftcards-fluid img{
+    display: none;
+  }
+
+  @media(max-width:500px){
+.godofwar{
+  display: none;
+}
+.giftcards{
+  display: block;
+}
+.giftcards-fluid{
+  width:90%;
+  position: relative;
+}
+  }
+</style>
 
 
 
@@ -430,29 +827,7 @@ width:100%
 
 
 
-
-
-<a > <h1 style="margin-bottom: -45px;" class="the-headings-on-the-products"><span>E</span>vents  <span>F</span>or  <span>Y</span>ou <span class="material-symbols-outlined">
-  keyboard_arrow_down
-  </span></h1></a>
-
-
-<div class="container4">
-  
-    {% for post in posts|slice:":2" %}
-      <div class="top-game-boxes">
-        <img src="{{post.postimage.url}}" alt="{{ post.title }} Image" width="100%" height="140vh">
-        <p style="color:white" class="the-product-title">{{ post.title }}</p>
-        {% if user.is_authenticated and user.username == 'imranlifik' %}
-        <a href="{% url 'editproduct' post.id %}"> <span class="material-symbols-outlined">
-          edit_square
-          </span></a>
-        {% endif %}
-    </div>
-    {% endfor %}
-  
-</div>
-
+</div></div>
 
 
 
@@ -460,7 +835,4 @@ width:100%
 {% include 'base/footer.html' %}
 
 
-
-</body>
-
-</html>
+{% endblock content %}

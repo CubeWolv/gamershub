@@ -1,3 +1,4 @@
+{% load static %}
 <style>
     .title-for-footer{
         font-family: 'Anurati',sans-serif;
@@ -8,6 +9,7 @@
     .footer {
       background-color: #333;
       color: white;
+      position: relative;
       padding: 20px;
       display: flex;
       flex-direction: column;
@@ -50,15 +52,38 @@
         margin: 0 10px 10px 0;
       }
     }
-  </style>
+    .foot-links{
+      position: relative;
+      left: 80%;
+
+    }
+    .monster{
+      position: absolute;
+      top:0%;
+      width: 300px;
+  
+    }
+
+    @media(max-width:550px){
+      .foot-links{
+        position: static;
+      }
+      .monster{
+        position: static;
+      }
+    }
+
+</style>
 <div class="footer">
     <p class="title-for-footer"><span style="color: orangered;">G</span>amersStudio</p></a>
-  
+  <div class="foot-links">
     <a href="{% url 'products' %}">Games</a>
     <a href="{% url 'giftcards' %}">Giftcards</a>
     <a href="/products?q=gadget">Gadgets</a>
     <a href="{% url 'contact' %}">Contact</a>
     <a href="/products?q=events">Events</a>
     <a href="#">Terms of use</a>
-
+</div>
+    <img class="monster" src="{% static 'images/monster.png' %}">
+    {{date}}
   </div>
